@@ -60,3 +60,19 @@ while user_number:
         maximum = digit
     user_number //= BASE
 print('Maximum digit is:', maximum)
+
+# fifth part
+income = int(input('Please inter income: '))
+outgoings = int(input('Please inter outgoings: '))
+
+profit = income - outgoings
+if profit < 0:
+    print(f'You works with loss {abs(profit)}')
+elif profit == 0:
+    print('You works without loss and profit')
+else:
+    print(f'You works with profit {profit}')
+    profitability = profit/income
+    print('Your ROI is:', profitability)
+    employees_number = int(input('Enter the number of company employees: '))
+    print('Profit of the company per employee:', profit/employees_number)
