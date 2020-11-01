@@ -25,3 +25,16 @@ print('Your numbers are:', user_int_var, user_int_var2)
 user_str_var = input('Type some string and press Enter: ')
 user_str_var2 = input('Type some string and press Enter: ')
 print('Your strings are: "', user_str_var, '" ', '"', user_str_var2, '"', sep='')
+
+# second part
+SECONDS_IN_HOUR = 3600
+SECONDS_IN_MINUTE = 60
+
+seconds = int(input('Please enter time in seconds: '))
+hours = seconds // SECONDS_IN_HOUR
+seconds %= SECONDS_IN_HOUR
+minutes = seconds // SECONDS_IN_MINUTE
+# last part - just seconds
+seconds %= SECONDS_IN_MINUTE
+# and result
+print(f'{hours:02}:{minutes:02}:{seconds:02}')
