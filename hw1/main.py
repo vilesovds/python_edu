@@ -76,3 +76,16 @@ else:
     print('Your ROI is:', profitability)
     employees_number = int(input('Enter the number of company employees: '))
     print('Profit of the company per employee:', profit/employees_number)
+
+# sixth part
+a = float(input('Please inter a: '))
+b = float(input('Please inter b: '))
+
+day = 1
+print(f'{day} day - {a:.2f}')
+while a < b:
+    day += 1
+    a *= 1.1  # short version of a = a + a*0.1
+    print(f'{day} day - {a:.2f}')
+
+print('Answer is:', day)
