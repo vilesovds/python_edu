@@ -40,10 +40,23 @@ seconds %= SECONDS_IN_MINUTE
 print(f'{hours:02}:{minutes:02}:{seconds:02}')
 
 # third part
-number = input('Please enter some positive number: ')
-single_number = int(number)
-double_number = int(number*2)
-triple_number = int(number*3)
+digit = input('Please enter some number: ')
+single_number = int(digit)
+double_number = int(digit * 2)
+triple_number = int(digit * 3)
 
 result = single_number+double_number+triple_number
 print(f'Sum {single_number}+{double_number}+{triple_number} is:', result)
+
+# fourth part
+# decimal base
+BASE = 10
+user_number = int(input('Please enter some positive number: '))
+maximum = 0
+while user_number:
+    digit = user_number % BASE
+    # print(number)
+    if digit > maximum:
+        maximum = digit
+    user_number //= BASE
+print('Maximum digit is:', maximum)
