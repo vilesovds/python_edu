@@ -38,3 +38,12 @@ minutes = seconds // SECONDS_IN_MINUTE
 seconds %= SECONDS_IN_MINUTE
 # and result
 print(f'{hours:02}:{minutes:02}:{seconds:02}')
+
+# third part
+number = input('Please enter some positive number: ')
+single_number = int(number)
+double_number = int(number*2)
+triple_number = int(number*3)
+
+result = single_number+double_number+triple_number
+print(f'Sum {single_number}+{double_number}+{triple_number} is:', result)
