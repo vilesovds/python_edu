@@ -26,7 +26,9 @@ user_str_var = input('Type some string and press Enter: ')
 user_str_var2 = input('Type some string and press Enter: ')
 print('Your strings are: "', user_str_var, '" ', '"', user_str_var2, '"', sep='')
 
+
 # second part
+print('*'*40)
 SECONDS_IN_HOUR = 3600
 SECONDS_IN_MINUTE = 60
 
@@ -39,7 +41,9 @@ seconds %= SECONDS_IN_MINUTE
 # and result
 print(f'{hours:02}:{minutes:02}:{seconds:02}')
 
+
 # third part
+print('*'*40)
 digit = input('Please enter some number: ')
 single_number = int(digit)
 double_number = int(digit * 2)
@@ -48,7 +52,9 @@ triple_number = int(digit * 3)
 result = single_number+double_number+triple_number
 print(f'Sum {single_number}+{double_number}+{triple_number} is:', result)
 
+
 # fourth part
+print('*'*40)
 # decimal base
 BASE = 10
 user_number = int(input('Please enter some positive number: '))
@@ -62,6 +68,7 @@ while user_number:
 print('Maximum digit is:', maximum)
 
 # fifth part
+print('*'*40)
 income = int(input('Please inter income: '))
 outgoings = int(input('Please inter outgoings: '))
 
@@ -78,6 +85,7 @@ else:
     print('Profit of the company per employee:', profit/employees_number)
 
 # sixth part
+print('*'*40)
 a = float(input('Please inter a: '))
 b = float(input('Please inter b: '))
 
