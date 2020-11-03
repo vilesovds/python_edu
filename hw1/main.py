@@ -44,10 +44,10 @@ print(f'{hours:02}:{minutes:02}:{seconds:02}')
 
 # third part
 print('*'*40)
-digit = input('Please enter some number: ')
-single_number = int(digit)
-double_number = int(digit * 2)
-triple_number = int(digit * 3)
+number = input('Please enter some number: ')
+single_number = int(number)
+double_number = int(number * 2)
+triple_number = int(number * 3)
 
 result = single_number+double_number+triple_number
 print(f'Sum {single_number}+{double_number}+{triple_number} is:', result)
@@ -95,5 +95,19 @@ while a < b:
     day += 1
     a *= 1.1  # short version of a = a + a*0.1
     print(f'{day} day - {a:.2f}')
+
+print('Answer is:', day)
+
+print('* Alternative version with one printf', '*'*30)
+a = float(input('Please inter a: '))
+b = float(input('Please inter b: '))
+
+day = 1
+while True:
+    print(f'{day} day - {a:.2f}')
+    if a >= b:
+        break
+    day += 1
+    a *= 1.1  # short version of a = a + a*0.1
 
 print('Answer is:', day)
