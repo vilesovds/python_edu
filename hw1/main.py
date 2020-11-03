@@ -61,7 +61,6 @@ user_number = int(input('Please enter some positive number: '))
 maximum = 0
 while user_number:
     digit = user_number % BASE
-    # print(number)
     if digit > maximum:
         maximum = digit
     user_number //= BASE
@@ -93,7 +92,7 @@ day = 1
 print(f'{day} day - {a:.2f}')
 while a < b:
     day += 1
-    a *= 1.1  # short version of a = a + a*0.1
+    a *= 1.1
     print(f'{day} day - {a:.2f}')
 
 print('Answer is:', day)
@@ -108,6 +107,6 @@ while True:
     if a >= b:
         break
     day += 1
-    a *= 1.1  # short version of a = a + a*0.1
+    a *= 1.1
 
 print('Answer is:', day)
