@@ -4,6 +4,7 @@ for el in example_list:
     print('element: ', el, '\ntype: ', type(el))
     print('')
 
+
 # part 2
 print('-'*40)
 
@@ -23,9 +24,11 @@ print('list  after: ', s_list)
 
 
 # I found another way by slices
+print('-'*40)
+
 s_list = []
 while True:
-    s = input('Please inter some text: ')
+    s = input('Please inter something: ')
     if s == '':
         break
     s_list.append(s)
@@ -37,6 +40,7 @@ if len(s_list) > 1:
     s_list[:rounded_length:2], s_list[1::2] = s_list[1::2], s_list[:rounded_length:2]
 
 print('list  after: ', s_list)
+
 
 # part 3
 print('-'*40)
@@ -59,3 +63,12 @@ else:
 
 # dict solution. Quite short ))
 print(SEASONS_DICT.get(month_str) or "Season not found")
+
+
+# part 4
+print('-'*40)
+
+user_str = input('Please enter some string: ')
+
+for n, s in enumerate(user_str.split(), 1):
+    print(f'{n}: "{s[:10]}"')
