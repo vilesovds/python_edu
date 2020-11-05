@@ -72,3 +72,63 @@ user_str = input('Please enter some string: ')
 
 for n, s in enumerate(user_str.split(), 1):
     print(f'{n}: "{s[:10]}"')
+
+
+# part 5
+print('-'*40)
+
+
+def colored_print(li: list, idx: int):
+    """ colored output like in training manual. Used ANSI colors in terminal """
+    for i, v in enumerate(li):
+        if i == idx:
+            print(f"\u001b[31m{v}\u001b[0m", end='')
+        else:
+            print(v, end='')
+        if i != len(li)-1:
+            print(',', end=' ')
+        else:
+            print('.')
+
+
+# solution by iteration only
+s_list = [7, 5, 3, 3, 2]
+while True:
+    in_str = input('Enter new number: ')
+    if in_str == '':
+        break
+
+    new_v = int(in_str)
+    idx = 0
+    for i, v in enumerate(s_list):
+        if new_v > v:
+            break
+        idx = i + 1
+    print(idx)
+    s_list.insert(idx, new_v)
+    colored_print(s_list, idx)
+
+# another way by count and index. I think it's complicated
+print('-'*40)
+
+s_list = [7, 5, 3, 3, 2]
+while True:
+    in_str = input('Enter new number: ')
+    if in_str == '':
+        break
+
+    new_v = int(in_str)
+
+    length = len(s_list)
+    count = s_list.count(new_v)
+    if count:
+        idx = s_list.index(new_v) + count
+    else:
+        idx = 0
+        for i, v in enumerate(s_list):
+            if new_v > v:
+                break
+            idx = i + 1
+    print(idx)
+    s_list.insert(idx, new_v)
+    colored_print(s_list, idx)
