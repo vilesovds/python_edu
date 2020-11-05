@@ -78,14 +78,15 @@ for n, s in enumerate(user_str.split(), 1):
 print('-'*40)
 
 
-def colored_print(li: list, idx: int):
+def colored_print(li: list, colored: int):
     """ colored output like in training manual. Used ANSI colors in terminal """
-    for i, v in enumerate(li):
-        if i == idx:
+    li_length = len(li)
+    for num, v in enumerate(li):
+        if num == colored:
             print(f"\u001b[31m{v}\u001b[0m", end='')
         else:
             print(v, end='')
-        if i != len(li)-1:
+        if num != li_length-1:
             print(',', end=' ')
         else:
             print('.')
@@ -104,7 +105,7 @@ while True:
         if new_v > v:
             break
         idx = i + 1
-    print(idx)
+
     s_list.insert(idx, new_v)
     colored_print(s_list, idx)
 
@@ -129,6 +130,31 @@ while True:
             if new_v > v:
                 break
             idx = i + 1
-    print(idx)
+
     s_list.insert(idx, new_v)
     colored_print(s_list, idx)
+
+# part 6
+print('-'*40)
+
+goods = []
+while True:
+    answer = input('Do you want add new item? Enter "yes" to continue: ')
+    if answer.lower() != 'yes':
+        break
+    name = input('Enter name: ')
+    price = float(input('Enter price: '))
+    count = int(input('Enter count: '))
+    unit = input('Enter unit: ')
+    goods.append((len(goods), {'name': name, 'price': price, 'count': count, 'unit': unit}))
+
+analytics = dict()
+for _, item in goods:
+    for k, v in item.items():
+        vl = analytics.get(k) or []
+        if v not in vl:
+            vl.append(v)
+        analytics[k] = vl
+
+print('goods: ', goods)
+print('analytics: ', analytics)
