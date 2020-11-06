@@ -8,12 +8,7 @@ for el in example_list:
 # part 2
 print('-'*40)
 
-s_list = []
-while True:
-    s = input('Please inter something: ')
-    if s == '':
-        break
-    s_list.append(s)
+s_list = input('Please inter list of items: ').split()
 
 print('list before: ', s_list)
 
@@ -26,12 +21,7 @@ print('list  after: ', s_list)
 # I found another way by slices
 print('-'*40)
 
-s_list = []
-while True:
-    s = input('Please inter something: ')
-    if s == '':
-        break
-    s_list.append(s)
+s_list = input('Please inter list of items: ').split()
 
 print('list before: ', s_list)
 
@@ -120,7 +110,6 @@ while True:
 
     new_v = int(in_str)
 
-    length = len(s_list)
     count = s_list.count(new_v)
     if count:
         idx = s_list.index(new_v) + count
@@ -133,6 +122,29 @@ while True:
 
     s_list.insert(idx, new_v)
     colored_print(s_list, idx)
+
+# another way very close to Binary search
+print('-'*40)
+
+s_list = [7, 5, 3, 3, 2]
+while True:
+    in_str = input('Enter new number: ')
+    if in_str == '':
+        break
+    new_v = int(in_str)
+
+    start = 0
+    end = len(s_list)
+
+    while end > start:
+        m = (start + end)//2
+        if new_v <= s_list[m]:
+            start = m + 1
+        else:
+            end = m
+
+    s_list.insert(start, new_v)
+    colored_print(s_list, start)
 
 # part 6
 print('-'*40)
