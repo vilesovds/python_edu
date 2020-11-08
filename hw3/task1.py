@@ -19,7 +19,7 @@ def anti_zero_div_exception(fn):
     def core_func(*args, **kwargs):
         try:
             return fn(*args, **kwargs)
-        except ZeroDivisionError as err:
+        except ZeroDivisionError:
             return float('nan')
     return core_func
 
