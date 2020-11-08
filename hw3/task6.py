@@ -4,8 +4,9 @@ def int_func(word: str):
     :param word: small Latin letters string
     :return: string
     """
+    upper_case_mask = 0xDF
     res = bytearray(word.encode())
-    res[0] &= ~0x20
+    res[0] &= upper_case_mask
     return res.decode()
 
 
@@ -16,8 +17,8 @@ def custom_title(text: str):
     :return: string
     """
     li = map(int_func, text.split())
-    print(' '.join(li))
+    return ' '.join(li)
 
 
 print(int_func('text'))
-custom_title('some text with spaces')
+print(custom_title('some text with spaces'))
