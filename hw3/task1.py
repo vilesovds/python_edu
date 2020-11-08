@@ -9,6 +9,8 @@ def simple_div(a, b):
     """
     if b != 0:
         return a/b
+    else:
+        return float('nan')
 
 
 # decorator way
@@ -18,7 +20,7 @@ def anti_zero_div_exception(fn):
         try:
             return fn(*args, **kwargs)
         except ZeroDivisionError as err:
-            pass
+            return float('nan')
     return core_func
 
 
