@@ -24,4 +24,12 @@ def my_func2(x: int, y: int):
 assert(my_func(2, -3) == pow(2, -3))
 assert(my_func2(2, -3) == pow(2, -3))
 assert(my_func(-1, -1) == pow(-1, -1))
-assert(my_func2(-1, -1) == pow(-1, -1))
+try:
+    my_func(0, -1)
+except Exception as err:
+    assert (type(err) == ZeroDivisionError)
+
+try:
+    my_func2(0, -1)
+except Exception as err:
+    assert (type(err) == ZeroDivisionError)
