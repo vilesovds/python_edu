@@ -2,7 +2,7 @@ def my_func(*args):
     """
     takes three positional arguments, and returns the sum of the largest two arguments
     :param args: some numbers
-    :return: float
+    :return: same type as numbers
     """
     if len(args) < 2:
         raise Exception('Wrong count of arguments. Should be >= 2')
