@@ -6,6 +6,5 @@ while working:
         if sa.lower() == 'q':
             working = False
             break
-        else:
-            total_sum += float(sa)
+        total_sum += float(sa)
     print(total_sum)
