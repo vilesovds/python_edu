@@ -21,6 +21,7 @@ def write_numbers(file_path):
     except Exception as err:
         print('Unexpected error:', err)
 
+
 def calc_numbers(file_path):
     """
     Calculated total sum of numbers in file
