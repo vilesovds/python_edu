@@ -47,6 +47,7 @@ if __name__ == '__main__':
 
 
 def test_positive():
+    import os
     src_fname = '1.txt'
     dst_fname = '2.txt'
     create_src_file(src_fname)
@@ -54,3 +55,5 @@ def test_positive():
     with open(dst_fname) as f:
         content = f.read()
     assert content == 'Один - 1\nДва - 2\nТри - 3\nЧетыре - 4'
+    os.remove(src_fname)
+    os.remove(dst_fname)
