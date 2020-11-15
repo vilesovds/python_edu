@@ -12,7 +12,7 @@ def calc_lines_words(file_path):
     """
     Calculate lines count and words count in each line
     :param file_path: path of file
-    :return: dict
+    :return: tuple of int and dict
     """
     result = dict()
     line_num = 0
