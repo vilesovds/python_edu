@@ -21,7 +21,7 @@ def salary_analyze(file_path, salary_thr=20000.0):
             for line in f:
                 try:
                     name, salary = line.split(':')
-                    salary = float(salary[:-1])
+                    salary = float(salary)
                     salary_avr += salary
                     items_count += 1
                     if salary < salary_thr:
