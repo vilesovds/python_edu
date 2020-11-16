@@ -11,14 +11,6 @@ def test_non_exists_file(monkeypatch):
     assert out_print[0].startswith('[Errno 2] No such file or directory:')
 
 
-def test_empty_file():
-    f_path = 'tmp'
-    f = open(f_path, 'w')
-    f.close()
-    assert ([], 0) == salary_analyze(f_path)
-    os.remove(f_path)
-
-
 @pytest.mark.parametrize("content, expected", [
     # usual
     (['Ivanov:20000\n',
