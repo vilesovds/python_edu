@@ -25,7 +25,7 @@ def test_generate_sample_file(name, samples):
      [("firm_1", "OOO", 10000, 5000),
       ("firm_2", "Gmbh", 20000, 7000),
       ("firm_3", "LLC", 8000, 28000)],
-     '[{"firm_3": -20000, "firm_2": 13000, firm_1": 5000}, {"average_profit": 9000}]'),
+     '[{"firm_3": -20000, "firm_2": 13000, "firm_1": 5000}, {"average_profit": 9000}]'),
     # all positive
     ('task7_test.txt', 'task7_test.json',
      [("firm_1", "OOO", 10000, 5000),
