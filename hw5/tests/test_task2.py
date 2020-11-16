@@ -4,8 +4,11 @@ import os
 from task2 import calc_lines_words
 
 
-def test_not_exists_file():
+def test_not_exists_file(monkeypatch):
+    out_print = []
+    monkeypatch.setattr('builtins.print', lambda s: out_print.append(str(s)))
     assert (0, {}) == calc_lines_words('')
+    assert out_print[0].startswith('[Errno 2] No such file or directory:')
 
 
 @pytest.mark.parametrize("content, expected", [
