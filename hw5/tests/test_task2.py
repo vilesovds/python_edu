@@ -16,7 +16,7 @@ def test_not_exists_file():
     (['one\n'],
      (1, {1: 1})),
     # hole ;)
-    (['one\n', 'one two\n', 'one two three\n', '\n', 'one two three four five'],
+    (['one\n', 'one two\n', 'one two three\n', ' \n', 'one two three four five'],
      (5, {1: 1, 2: 2, 3: 3, 4: 0, 5: 5})),
     # empty
     ([], (0, {}))])

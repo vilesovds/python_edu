@@ -18,7 +18,7 @@ def calc_lines_words(file_path):
     try:
         with open(file_path, 'r') as f:
             for line_num, fl in enumerate(f, 1):
-                result[line_num] = fl.count(' ') + 1 if fl != '\n' else 0
+                result[line_num] = len(fl.split())
     except Exception as err:
         print(err)
     return line_num, result
