@@ -4,6 +4,7 @@ from task1 import collaborate
 
 @pytest.mark.parametrize("input_list, expected", [(["Mark", "Antony", "Lisa"], 'Mark\nAntony\nLisa\n'),
                                                   (["Mark"], 'Mark\n'),
+                                                  (["Mark", "", "Lisa"], 'Mark\n'),
                                                   ([''], '')])
 def test_content_list(monkeypatch, input_list, expected):
     import os.path
