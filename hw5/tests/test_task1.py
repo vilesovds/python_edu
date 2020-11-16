@@ -2,16 +2,14 @@ import pytest
 from task1 import collaborate
 
 
-@pytest.mark.parametrize("input_list, expected", [(["Mark", "Antony", "Lisa"], 'Mark\nAntony\nLisa\n'),
-                                                  (["Mark"], 'Mark\n'),
-                                                  (["Mark", "", "Lisa"], 'Mark\n'),
+@pytest.mark.parametrize("input_list, expected", [(["Mark", "Antony", "Lisa", ''], 'Mark\nAntony\nLisa\n'),
+                                                  (["Mark", ''], 'Mark\n'),
+                                                  (["Mark", '', "Lisa", ''], 'Mark\n'),
                                                   ([''], '')])
 def test_content_list(monkeypatch, input_list, expected):
     import os.path
     test_file = '1.txt'
     gen_list = input_list.copy()
-    # to stop
-    gen_list.append('')
     gen = (x for x in gen_list)
 
     # list mock
