@@ -6,7 +6,7 @@ from task6 import calculate_hours
 
 @pytest.mark.parametrize("content, expected", [
     # usual
-    ("Информатика: 100(л) 50(пр) 20(лаб)\n" \
+    ("Информатика: 100( л) 50(пр) 20(лаб)\n" \
      "Физика: 30(л) - 10(лаб)\n" \
      "Физкультура: - 30(пр) -", {"Информатика": 170, "Физика": 40, "Физкультура": 30}),
     # one
@@ -36,9 +36,9 @@ def test_non_exists_file(monkeypatch):
 
 @pytest.mark.parametrize("content, expected, message", [
     # not a number
-    ("Информатика: 100(л) eee(пр) -\n",
-     {},
-     'Unexpected error: invalid literal for int() with base 10:'),
+    ("Информатика: 100(л ) eee( пр) -\n",
+     {"Информатика": 100},
+     ''),
     # no subject
     ("Физика: 30(л) - 10(лаб)\n" \
      "100(л) 50(пр) -\n",

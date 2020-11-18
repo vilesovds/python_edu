@@ -16,6 +16,28 @@
 """
 
 
+def to_number(text):
+    """
+    Search number(float or integer) at start of text.
+    :param text: string
+    :return: float int or None
+    """
+    approved = '012345678.'
+    to_convert = []
+    for ch in text:
+        if ch not in approved:
+            break
+        to_convert.append(ch)
+
+    if len(to_convert):
+        if to_convert[-1] == '.':
+            to_convert.pop()
+        s_to_num = ''.join(to_convert)
+        return float(s_to_num) if '.' in s_to_num else int(s_to_num)
+    else:
+        return 0
+
+
 def calculate_hours(file_path):
     """
     Calculate total hours by subject
@@ -26,8 +48,8 @@ def calculate_hours(file_path):
     try:
         with open(file_path, 'r') as f:
             for line in f:
-                subject, numbers = line[:-1].split(':')
-                subject_sum = sum(int(x.split('(')[0]) for x in numbers.split(' ') if len(x) and x != '—' and x != '-')
+                subject, numbers = line.split(':')
+                subject_sum = sum(int(n) for word in numbers.split() for n in word.split('(') if n.isdigit())
                 result[subject] = subject_sum
     except Exception as err:
         print('Unexpected error:', err)
