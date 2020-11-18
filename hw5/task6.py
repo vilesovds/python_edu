@@ -16,28 +16,6 @@
 """
 
 
-def to_number(text):
-    """
-    Search number(float or integer) at start of text.
-    :param text: string
-    :return: float int or None
-    """
-    approved = '012345678.'
-    to_convert = []
-    for ch in text:
-        if ch not in approved:
-            break
-        to_convert.append(ch)
-
-    if len(to_convert):
-        if to_convert[-1] == '.':
-            to_convert.pop()
-        s_to_num = ''.join(to_convert)
-        return float(s_to_num) if '.' in s_to_num else int(s_to_num)
-    else:
-        return 0
-
-
 def calculate_hours(file_path):
     """
     Calculate total hours by subject
