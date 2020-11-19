@@ -36,5 +36,5 @@ class TrafficLight:
 
 
 if __name__ == '__main__':
-    tl = TrafficLight(red=4, yesllow=2, green=5)
+    tl = TrafficLight(green=5)
     tl.running()
