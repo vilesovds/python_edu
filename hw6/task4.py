@@ -53,11 +53,11 @@ class Car:
         print(f'current speed {self.speed} km/h')
 
 
-# @class_attributes(dict(name='Town car'), ['color', 'is_police'])
 class TownCar(Car):
     __speed_limit = 60
 
-    def __init__(self, name, *args, **kwargs):
+    def __init__(self, name, **kwargs):
+        # todo check kwargs
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.name = name
@@ -68,12 +68,30 @@ class TownCar(Car):
             print(f'!!!Speed limit!!!')
 
 
+class WorkCar(TownCar):
+    __speed_limit = 40
+
+    def __init__(self, name, **kwargs):
+        super().__init__(name, **kwargs)
+        # self.__speed_limit = 40
+
+
 if __name__ == '__main__':
-    tc = TownCar('Kia Rio', color='yellow')
-    print(tc.__dict__)
-    tc.go(40)
-    tc.show_speed()
-    tc.turn('left')
-    tc.show_speed()
-    tc.go(90)
-    tc.show_speed()
+    # tc = TownCar('Kia Rio', color='blue')
+    # print(tc.__dict__)
+    # tc.go(40)
+    # tc.show_speed()
+    # tc.turn('left')
+    # tc.show_speed()
+    # tc.go(90)
+    # tc.show_speed()
+
+    wc = WorkCar('Gaz', color='yellow')
+    print(wc.__dict__)
+    wc.go(40)
+    wc.show_speed()
+    wc.turn('right')
+    wc.go(41)
+    wc.show_speed()
+    wc.go(61)
+    wc.show_speed()
