@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from enum import Enum
+
 """
 Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты: speed, color, name, is_police (булево).
 А также методы: go, stop, turn(direction), которые должны сообщать, что машина поехала, остановилась, повернула (куда).
@@ -10,21 +12,36 @@
 Создайте экземпляры классов, передайте значения атрибутов.
 Выполните доступ к атрибутам, выведите результат. Выполните вызов методов и также покажите результат.
 """
-from dataclasses import dataclass
 
 
-# class decorator definition
-def class_attributes(default_attr, more_allowed_attr):
-    def class_decorator(cls):
-        def args_init(self, *args, **kwargs):
-            allowed_attr = list(default_attr.keys()) + more_allowed_attr
-            default_attr.update(kwargs)
-            self.__dict__.update((k, v) for k, v in default_attr.items() if k in allowed_attr)
+class WordSide:
+    """
+    Realized side of the Word storage
+    """
+    __possible_sides = ['NORTH', 'EAST', 'SOUTH', 'WEST']
+    __current_idx = 0
 
-        cls.__init__ = args_init
-        return cls
+    def __init__(self, side='NORTH'):
+        self.__set_side(side)
 
-    return class_decorator
+    def __set_side(self, side: str):
+        if not side.upper() in WordSide.__possible_sides:
+            raise TypeError('Wrong side', side)
+        else:
+            self.__current_idx = WordSide.__possible_sides.index(side.upper())
+
+    def __get_side(self):
+        return WordSide.__possible_sides[self.__current_idx]
+
+    def turn(self, str_direction: str):
+        if str_direction.lower() == 'right':
+            self.__current_idx += 1
+        elif str_direction.lower() == 'left':
+            self.__current_idx -= 1
+        else:
+            raise TypeError(f"Wrong direction {str_direction} Should be 'left' or 'right'")
+
+    side = property(__get_side, __set_side)
 
 
 class Car:
@@ -33,28 +50,55 @@ class Car:
     """
     speed = 0
     color = 'black'
-    name = 'some car'
+    name = 'Some car'
     is_police = False
 
+    __current_direction = WordSide()
+
+    def __set_direction(self, direction):
+        self.__current_direction.side = direction
+
     def go(self, speed):
+        """
+        Start moving with speed
+        :param speed: number
+        :return:
+        """
         self.speed = speed
-        """
-        """
-        print('Car started')
+        print(f'"{self.name}" started')
 
     def stop(self):
+        """
+        To stop the car
+        :return:
+        """
         self.speed = 0
-        print('Car stopped')
+        print(f'"{self.name}" stopped')
 
-    def turn(self, direction):
-        print(f'Car turned to the {direction}')
+    def __get_direction(self):
+        return self.__current_direction.side
+
+    def turn(self, direction: str):
+        """
+        Turn the car to left or right
+        :param direction: str
+        :return:
+        """
+        self.__current_direction.turn(direction)
+        print(f'"{self.name}" going to the {self.side}')
 
     def show_speed(self):
-        print(f'current speed {self.speed} km/h')
+        """
+        Show current speed
+        :return:
+        """
+        print(f'{self.name} have current speed {self.speed} km/h')
+
+    side = property(__get_direction, __set_direction)
 
 
 class TownCar(Car):
-    __speed_limit = 60
+    _speed_limit = 60
 
     def __init__(self, name, **kwargs):
         # todo check kwargs
@@ -64,34 +108,31 @@ class TownCar(Car):
 
     def show_speed(self):
         super().show_speed()
-        if self.speed > self.__speed_limit:
+        if self.speed > self._speed_limit:
             print(f'!!!Speed limit!!!')
 
 
 class WorkCar(TownCar):
-    __speed_limit = 40
-
-    def __init__(self, name, **kwargs):
-        super().__init__(name, **kwargs)
-        # self.__speed_limit = 40
+    _speed_limit = 40
 
 
 if __name__ == '__main__':
-    # tc = TownCar('Kia Rio', color='blue')
-    # print(tc.__dict__)
-    # tc.go(40)
-    # tc.show_speed()
-    # tc.turn('left')
-    # tc.show_speed()
-    # tc.go(90)
-    # tc.show_speed()
+    tc = TownCar('Kia Rio', color='blue')
+    tc.go(40)
+    tc.show_speed()
+    tc.turn('left')
+    tc.show_speed()
+    tc.go(90)
+    tc.show_speed()
+    tc.stop()
+    tc.show_speed()
 
-    wc = WorkCar('Gaz', color='yellow')
-    print(wc.__dict__)
+    wc = WorkCar('Gaz', color='yellow', side='north')
     wc.go(40)
     wc.show_speed()
+    print(wc.side)
     wc.turn('right')
+    wc.turn('right')
+    wc.turn('left')
     wc.go(41)
-    wc.show_speed()
-    wc.go(61)
     wc.show_speed()
