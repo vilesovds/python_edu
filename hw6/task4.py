@@ -85,16 +85,16 @@ class Car:
         :return:
         """
         self.__current_direction.turn(direction)
-        print(f'"{self.name}" going to the {self.side}')
+        print(f'"{self.name}" going to the {self.direction}')
 
     def show_speed(self):
         """
         Show current speed
         :return:
         """
-        print(f'{self.name} have current speed {self.speed} km/h')
+        print(f'"{self.name}" have current speed {self.speed} km/h')
 
-    side = property(__get_direction, __set_direction)
+    direction = property(__get_direction, __set_direction)
 
 
 class TownCar(Car):
@@ -127,10 +127,10 @@ if __name__ == '__main__':
     tc.stop()
     tc.show_speed()
 
-    wc = WorkCar('Gaz', color='yellow', side='north')
+    wc = WorkCar('Gaz', color='yellow', direction='north')
     wc.go(40)
     wc.show_speed()
-    print(wc.side)
+    print(wc.direction)
     wc.turn('right')
     wc.turn('right')
     wc.turn('left')
