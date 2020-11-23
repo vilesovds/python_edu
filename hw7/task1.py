@@ -24,17 +24,33 @@ class Matrix:
         return ' \n'.join(' '.join((str(num) for num in row)) for row in self.data)
 
     def __add__(self, other):
-        if type(other) != Matrix:
-            raise ValueError(f'Only Matrix objects supported')
-
-        ds = self.dimentions()
-        do = other.dimentions()
-        if ds != do:
-            raise ValueError(f"operands could not be broadcast together with shapes {ds} {do}")
+        self.__check_other_same(other)
         return Matrix([[el_s + el_o for el_s, el_o in zip(row_s, row_o)]
                        for row_s, row_o in zip(self.data, other.data)])
 
-    def dimentions(self):
+    def __iadd__(self, other):
+        self.__check_other_same(other)
+        rows, cols = self.dimensions()
+        for i, row_o in enumerate(other.data):
+            for j, el in enumerate(row_o):
+                self.data[i][j] += el
+        return self
+
+    def __check_other_same(self, other):
+        """
+        Check type and dimensions of Matrix candidate
+        :param other: candidate
+        :return: None if the same
+        """
+        if type(other) != Matrix:
+            raise ValueError(f'Only Matrix objects supported')
+
+        ds = self.dimensions()
+        do = other.dimensions()
+        if ds != do:
+            raise ValueError(f"operands could not be broadcast together with shapes {ds} {do}")
+
+    def dimensions(self):
         """
         Size of shape of matrix
         :return: tuple
@@ -50,6 +66,9 @@ if __name__ == '__main__':
     print('-'*25)
     print(m2)
     print('-'*25)
+    print(m3)
+    print('-'*25)
+    m3 += Matrix([[-3, -5, -8, -3], [-7, -1, -4, 3]])
     print(m3)
     print('-'*25)
 
