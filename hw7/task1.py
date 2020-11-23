@@ -20,6 +20,9 @@ class Matrix:
         return ' \n'.join(' '.join((str(num) for num in row)) for row in self.data)
 
     def __add__(self, other):
+        if type(other) != Matrix:
+            raise ValueError(f'Only Matrix objects supported')
+
         ds = self.dimentions()
         do = other.dimentions()
         if ds != do:
@@ -53,3 +56,4 @@ if __name__ == '__main__':
     print('ms2\n', ms2, sep='')
     ms3 = ms1 + Matrix([[1, 2], [3, 4], [5, 6]]) + Matrix([[-10, -20], [-30, -40], [-50, -60]])
     print('ms3\n', ms3, sep='')
+    m1 + 12
