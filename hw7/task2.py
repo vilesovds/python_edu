@@ -14,34 +14,70 @@ from abc import ABC, abstractmethod
 
 
 class Clothes(ABC):
+    name = 'Some'
 
+    @property
     @abstractmethod
     def fabric_consumption(self):
         pass
 
+    @staticmethod
+    def calc_fabric_consumption(closes):
+        """
+        Helper to calculate total fabric consumption
+        :param closes: list of Closes
+        :return: float
+        """
+        return sum(map(float, closes))
+
+    def __float__(self):
+        return self.fabric_consumption
+
+    def __mul__(self, other):
+        """
+        Create list of objects * other as count
+        :param other: int
+        :return: list
+        """
+        if type(other) == int:
+            return [self for _ in range(other)]
+
+    def __repr__(self):
+        return self.name
+
 
 class Coat(Clothes):
-    def __init__(self, size):
-        # todo check numbers
-        self.v = size
+    _minimum_size = 32
+
+    def __init__(self, size, name='Coat'):
+        if size <= 0:
+            raise ValueError(f"Size couldn't be lower than {self._minimum_size}")
+        self.size = size
+        self.name = name
 
     @property
     def fabric_consumption(self):
-        return self.v/6.5 + 0.5
+        return self.size/6.5 + 0.5
 
 
 class Suit(Clothes):
-    def __init__(self, height):
-        # todo check numbers
-        self.h = height
+    _minimum_height = 100
+
+    def __init__(self, height, name="Suit"):
+        if height <= self._minimum_height:
+            raise ValueError(f"Height couldn't be lower than {self._minimum_height}")
+        self.height = height
+        self.name = name
 
     @property
     def fabric_consumption(self):
-        return 2 * self.h + 0.3
+        return 2 * self.height + 0.3
 
 
 if __name__ == '__main__':
-    s = Suit(180)
-    print(s.fabric_consumption)
+    s = Suit(80)
+    print(f'{s} takes {s.fabric_consumption}')
     c = Coat(42)
-    print(c.fabric_consumption)
+    print(f'{c} takes {c.fabric_consumption}')
+    print(c*10 + s*12)
+    print(Clothes.calc_fabric_consumption(c*10 + s*12))
