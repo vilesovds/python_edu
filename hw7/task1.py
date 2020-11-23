@@ -14,6 +14,10 @@
 
 class Matrix:
     def __init__(self, data: list):
+        l = len(data[0])
+        for row in data:
+            if len(row) != l:
+                raise ValueError(f"non-rectangular matrices are not supported {data}")
         self.data = data
 
     def __str__(self):
@@ -56,4 +60,4 @@ if __name__ == '__main__':
     print('ms2\n', ms2, sep='')
     ms3 = ms1 + Matrix([[1, 2], [3, 4], [5, 6]]) + Matrix([[-10, -20], [-30, -40], [-50, -60]])
     print('ms3\n', ms3, sep='')
-    m1 + 12
+
