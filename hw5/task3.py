@@ -26,8 +26,8 @@ def salary_analyze(file_path, salary_thr=20000.0):
                     items_count += 1
                     if salary < salary_thr:
                         filtered_list.append(name)
-                except ValueError:
-                    print('Found some wrong data at line:', line)
+                except ValueError as err:
+                    print('Found some wrong data at line:', line, f'Error {err}')
     except Exception as err:
         print(err)
     salary_avr = salary_avr / items_count if items_count else 0
