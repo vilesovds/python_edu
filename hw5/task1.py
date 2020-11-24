@@ -9,7 +9,7 @@ def collaborate(file_path):
     with open(file_path, 'w') as f:
         while True:
             i = input("Please enter some string or type Enter to exit: ")
-            if i == '':
+            if not i:
                 break
             print(i, file=f)
 
