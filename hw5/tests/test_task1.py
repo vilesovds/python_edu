@@ -21,3 +21,9 @@ def test_content_list(monkeypatch, input_list, expected):
     with open(test_file, 'r') as f:
         assert f.read() == expected
     os.remove(test_file)
+
+
+@pytest.mark.parametrize('filename, expected', [('', FileNotFoundError)])
+def test_negative_file_error(filename, expected):
+    with pytest.raises(expected):
+        collaborate(filename)
