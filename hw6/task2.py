@@ -21,6 +21,8 @@ class Road:
         :param length: number
         :param width: number
         """
+        if length <= 0 or width <= 0:
+            raise ValueError("length and width must be positive numbers", length, width)
         self.__length = length
         self.__width = width
 
@@ -31,6 +33,8 @@ class Road:
         :param thickness: number
         :return: number, kg
         """
+        if density <= 0 or thickness <= 0:
+            raise ValueError("density and thickness must be positive numbers", density, thickness)
         return self.__width * self.__length * density * thickness
 
 
