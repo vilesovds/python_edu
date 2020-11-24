@@ -50,7 +50,7 @@ class Coat(Clothes):
     _minimum_size = 32
 
     def __init__(self, size, name='Coat'):
-        if size <= 0:
+        if size < self._minimum_size:
             raise ValueError(f"Size couldn't be lower than {self._minimum_size}")
         self.size = size
         self.name = name
@@ -64,7 +64,7 @@ class Suit(Clothes):
     _minimum_height = 100
 
     def __init__(self, height, name="Suit"):
-        if height <= self._minimum_height:
+        if height < self._minimum_height:
             raise ValueError(f"Height couldn't be lower than {self._minimum_height}")
         self.height = height
         self.name = name
