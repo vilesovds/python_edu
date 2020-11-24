@@ -14,9 +14,9 @@
 
 class Matrix:
     def __init__(self, data: list):
-        l = len(data[0])
+        ld = len(data[0])
         for row in data:
-            if len(row) != l:
+            if len(row) != ld:
                 raise ValueError(f"non-rectangular matrices are not supported {data}")
         self.data = data
 
@@ -30,7 +30,6 @@ class Matrix:
 
     def __iadd__(self, other):
         self.__check_other_same(other)
-        rows, cols = self.dimensions()
         for i, row_o in enumerate(other.data):
             for j, el in enumerate(row_o):
                 self.data[i][j] += el
@@ -79,4 +78,3 @@ if __name__ == '__main__':
     print('ms2\n', ms2, sep='')
     ms3 = ms1 + Matrix([[1, 2], [3, 4], [5, 6]]) + Matrix([[-10, -20], [-30, -40], [-50, -60]])
     print('ms3\n', ms3, sep='')
-
