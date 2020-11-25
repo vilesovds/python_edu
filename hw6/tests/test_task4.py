@@ -16,3 +16,18 @@ def test_word_side_turn(side, turn, expect):
     ws = WordSide(side)
     ws.turn(turn)
     assert ws.side == expect
+
+
+@pytest.mark.parametrize('side, turn, expected', [
+    # wrong init
+    ('aaa', 'left', TypeError),
+    # wrong turn
+    ('North', 'a', TypeError),
+    # zero init
+    ('', 'left', TypeError),
+    # zero turn
+    ('North', '', TypeError)])
+def test_word_side_exception(side, turn, expected):
+    with pytest.raises(expected):
+        ws = WordSide(side)
+        ws.turn(turn)
