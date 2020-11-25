@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from enum import Enum
-
 """
 Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты: speed, color, name, is_police (булево).
 А также методы: go, stop, turn(direction), которые должны сообщать, что машина поехала, остановилась, повернула (куда).
@@ -22,7 +20,7 @@ class WordSide:
     __current_idx = 0
 
     def __init__(self, side='NORTH'):
-        self.__set_side(side)
+        self.side = side
 
     def __set_side(self, side: str):
         if not side.upper() in WordSide.__possible_sides:
