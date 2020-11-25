@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-import mock
 from task1 import TrafficLight
-import time
 
 
 @pytest.mark.parametrize("red, yellow, green, expected", [
