@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# import time
 from time import sleep
 from itertools import cycle
 
@@ -6,6 +7,7 @@ from itertools import cycle
 class TrafficLight:
     __colors = ('red', 'yellow', 'green')
     __default_timers = {'red': 7, 'yellow': 2, 'green': 5}
+
 
     def __init__(self, **kwargs):
         self.__times = TrafficLight.__default_timers.copy()
@@ -29,11 +31,12 @@ class TrafficLight:
             self.__times[k] = v
 
     def running(self):
-        for light in self.__color:
+        while True:
+            light = next(self.__color)
             t = self.__times[light]
             print(f'{light} will be on for {t} sec(s)')
             for s in range(t, 0, -1):
-                print(f'{s}')
+                print(int(s))
                 sleep(1)
 
 
