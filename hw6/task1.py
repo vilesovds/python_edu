@@ -12,6 +12,7 @@ class TrafficLight:
         self.apply_times(**kwargs)
         self.__color = cycle(TrafficLight.__colors)
 
+    @staticmethod
     def get_colors():
         return TrafficLight.__colors
 
@@ -20,14 +21,11 @@ class TrafficLight:
 
     def apply_times(self, **kwargs):
         for k, v in kwargs.items():
-            try:
-                v = int(v)
-            except TypeError:
-                raise TypeError("Unexpected value type. Need integer")
-            if v <= 0:
-                raise ValueError("Unsupported value for time")
             if k not in self.__times.keys():
                 raise KeyError(f"Params should be one of this: {', '.join(self.__times.keys())}")
+            v = int(v)
+            if v <= 0:
+                raise ValueError("Unsupported value for time")
             self.__times[k] = v
 
     def running(self):
