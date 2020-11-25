@@ -34,11 +34,12 @@ class WordSide:
     def turn(self, str_direction: str):
         if str_direction.lower() == 'right':
             self.__current_idx += 1
+
         elif str_direction.lower() == 'left':
             self.__current_idx -= 1
         else:
             raise TypeError(f"Wrong direction {str_direction} Should be 'left' or 'right'")
-
+        self.__current_idx %= 4
     side = property(__get_side, __set_side)
 
 
