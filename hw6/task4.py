@@ -115,6 +115,14 @@ class WorkCar(TownCar):
     _speed_limit = 40
 
 
+class SportCar(Car):
+    pass
+
+
+class PoliceCar(Car):
+    is_police = True
+
+
 if __name__ == '__main__':
     tc = TownCar('Kia Rio', color='blue')
     tc.go(40)
