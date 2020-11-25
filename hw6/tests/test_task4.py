@@ -69,6 +69,7 @@ def test_car_go(monkeypatch, name, speed, expected):
     assert c.speed == speed
     assert expected == ' '.join(out_print)
 
+
 @pytest.mark.parametrize('speed, expected', [
     # negative
     (-1, ValueError),
