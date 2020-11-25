@@ -64,7 +64,7 @@ class MockTrafficLight:
     (3, {'red': 1, 'yellow': 2, 'green': 3}, 'red will be on for 1 sec(s)\n1\nyellow will be on for 2 sec(s)\n2\n1\n'
                                              'green will be on for 3 sec(s)\n3'),
     # 2 times
-    (6, {'red': 1, 'yellow': 2, 'green': 3},
+    (9, {'red': 1, 'yellow': 2, 'green': 3},
      'red will be on for 1 sec(s)\n1\nyellow will be on for 2 sec(s)\n2\n1\n'
      'green will be on for 3 sec(s)\n3\n2\n1\n'
      'red will be on for 1 sec(s)\n1\nyellow will be on for 2 sec(s)\n2\n1\n'
