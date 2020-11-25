@@ -21,3 +21,14 @@ def test_create(name, surname, position, wage, bonus, expected):
 def test_total_income(wage, bonus, expected):
     p = Position('A', 'B', 'C', wage, bonus)
     assert expected == p.get_total_income()
+
+
+@pytest.mark.parametrize("name, surname, expected", [
+    # usual
+    ('Ivan', 'Bespaly', 'Ivan Bespaly'),
+    # zero
+    ('', '', ' ')])
+def test_get_full_name(name, surname, expected):
+    p = Position(name, surname, 'C', 11, 0)
+    assert expected == p.get_full_name()
+
