@@ -54,6 +54,12 @@ class Car:
 
     __current_direction = WordSide()
 
+    def __init__(self, name, **kwargs):
+        # todo check kwargs
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+        self.name = name
+
     def __set_direction(self, direction):
         self.__current_direction.side = direction
 
@@ -63,6 +69,10 @@ class Car:
         :param speed: number
         :return:
         """
+        if not type(speed) in (float, int):
+            raise TypeError('Only numeric speed supported')
+        if speed < 0:
+            raise ValueError('Only positive speed supported')
         self.speed = speed
         print(f'"{self.name}" started')
 
@@ -98,12 +108,6 @@ class Car:
 
 class TownCar(Car):
     _speed_limit = 60
-
-    def __init__(self, name, **kwargs):
-        # todo check kwargs
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-        self.name = name
 
     def show_speed(self):
         super().show_speed()
