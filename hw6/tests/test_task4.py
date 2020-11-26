@@ -95,3 +95,21 @@ def test_car_stop(monkeypatch, name, expected):
     c.stop()
     assert c.speed == 0
     assert ''.join(out_print) == expected
+
+
+@pytest.mark.parametrize('direction, turn, expected_direction, expected_print', [
+    ('NORTH', 'left', 'WEST', '"test" going to the WEST'),
+    ('NORTH', 'Right', 'EAST', '"test" going to the EAST'),
+    ('west', 'Left', 'SOUTH', '"test" going to the SOUTH'),
+    ('WEST', 'right', 'NORTH', '"test" going to the NORTH'),
+    ('south', 'LefT', 'EAST', '"test" going to the EAST'),
+    ('soUth', 'RIGHT', 'WEST', '"test" going to the WEST'),
+    ('EASt', 'LefT', 'NORTH', '"test" going to the NORTH'),
+    ('EaSt', 'RIGht', 'SOUTH', '"test" going to the SOUTH')])
+def test_car_turn(monkeypatch, direction, turn, expected_direction, expected_print):
+    out_print = []
+    monkeypatch.setattr('builtins.print', lambda *args: out_print.extend(map(str, args)))
+    c = Car('test', direction=direction)
+    c.turn(turn)
+    assert c.direction == expected_direction
+    assert ''.join(out_print) == expected_print
