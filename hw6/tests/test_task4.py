@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from task4 import WordSide, Car
+from task4 import WordSide, Car, TownCar, WorkCar
 
 
 @pytest.mark.parametrize('side, turn, expect', [
@@ -91,7 +91,7 @@ def test_car_go_exception(monkeypatch, speed, expected):
 def test_car_stop(monkeypatch, name, expected):
     out_print = []
     monkeypatch.setattr('builtins.print', lambda *args: out_print.extend(map(str, args)))
-    c = Car(name)
+    c = Car(name, speed=40)
     c.stop()
     assert c.speed == 0
     assert ''.join(out_print) == expected
@@ -124,3 +124,37 @@ def test_car_turn_exception(turn, expected):
     with pytest.raises(expected):
         car = Car('test')
         car.turn(turn)
+
+
+@pytest.mark.parametrize('speed, expected', [
+    (50, '"test" have current speed 50 km/h'), (0, '"test" have current speed 0 km/h')])
+def test_car_show_speed(monkeypatch, speed, expected):
+    out_print = []
+    monkeypatch.setattr('builtins.print', lambda *args: out_print.extend(map(str, args)))
+    c = Car('test', speed=speed)
+    c.show_speed()
+    assert ''.join(out_print) == expected
+
+
+@pytest.mark.parametrize('speed, expected', [
+    (0, '"test" have current speed 0 km/h'),
+    (60, '"test" have current speed 60 km/h'),
+    (61, '"test" have current speed 61 km/h\n!!!Speed limit!!!')])
+def test_town_car_speed_limit(monkeypatch, speed, expected):
+    out_print = []
+    monkeypatch.setattr('builtins.print', lambda *args: out_print.extend(map(str, args)))
+    t = TownCar('test', speed=speed)
+    t.show_speed()
+    assert '\n'.join(out_print) == expected
+
+
+@pytest.mark.parametrize('speed, expected', [
+    (0, '"test" have current speed 0 km/h'),
+    (40, '"test" have current speed 40 km/h'),
+    (41, '"test" have current speed 41 km/h\n!!!Speed limit!!!')])
+def test_work_car_speed_limit(monkeypatch, speed, expected):
+    out_print = []
+    monkeypatch.setattr('builtins.print', lambda *args: out_print.extend(map(str, args)))
+    w = WorkCar('test', speed=speed)
+    w.show_speed()
+    assert '\n'.join(out_print) == expected
