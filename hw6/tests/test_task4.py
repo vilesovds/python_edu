@@ -81,3 +81,17 @@ def test_car_go_exception(monkeypatch, speed, expected):
     with pytest.raises(expected):
         c = Car('test')
         c.go(speed)
+
+
+@pytest.mark.parametrize('name, expected', [
+    # usual
+    ('123', '"123" stopped'),
+    # empty
+    ('', '"" stopped')])
+def test_car_stop(monkeypatch, name, expected):
+    out_print = []
+    monkeypatch.setattr('builtins.print', lambda *args: out_print.extend(map(str, args)))
+    c = Car(name)
+    c.stop()
+    assert c.speed == 0
+    assert ''.join(out_print) == expected
