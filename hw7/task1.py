@@ -54,7 +54,7 @@ class Matrix:
         Size of shape of matrix
         :return: tuple
         """
-        return len(self.data[0]), len(self.data) // len(self.data[0])
+        return len(self.data), len(self.data[0])
 
 
 if __name__ == '__main__':
