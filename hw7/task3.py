@@ -36,8 +36,8 @@ class CellStorage:
     def __init__(self, count: int):
         if not type(count) is int:
             raise TypeError(f'Count should be an natural number but got {type(count)}')
-        if count <= 0:
-            raise ValueError(f'Count should greater zero but got {type(count)}')
+        if count < 0:
+            raise ValueError(f'Count should greater or equal zero but got {type(count)}')
         self.count = count
 
     @classmethod
@@ -59,11 +59,9 @@ class CellStorage:
 
     def __truediv__(self, other):
         self.__check_other(other)
-        # todo check zero
         return CellStorage(self.count//other.count)
 
     def make_order(self, cells_in_row):
-        # todo check zero
         end = self.count + self.count // cells_in_row + 1  # count of * + count of \n + border
         return ''.join('\n' if not x % (cells_in_row + 1) else '*' for x in range(1, end))
 
@@ -86,3 +84,5 @@ if __name__ == '__main__':
     print('-'*17)
     print(storage.make_order(17))
     print('-' * 17)
+
+
