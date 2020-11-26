@@ -113,3 +113,14 @@ def test_car_turn(monkeypatch, direction, turn, expected_direction, expected_pri
     c.turn(turn)
     assert c.direction == expected_direction
     assert ''.join(out_print) == expected_print
+
+
+@pytest.mark.parametrize('side, turn, expected', [
+    # wrong turn
+    ('North', 'a', TypeError),
+    # zero turn
+    ('North', '', TypeError)])
+def test_car_turn_exception(side, turn, expected):
+    with pytest.raises(expected):
+        car = Car('test')
+        car.turn(turn)
