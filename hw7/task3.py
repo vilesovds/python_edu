@@ -34,25 +34,31 @@
 class CellStorage:
 
     def __init__(self, count: int):
-        # todo check number
+        if not type(count) is int:
+            raise TypeError(f'Count should be an natural number but got {type(count)}')
+        if count <= 0:
+            raise ValueError(f'Count should greater zero but got {type(count)}')
         self.count = count
 
+    @classmethod
+    def __check_other(cls, other):
+        if not type(other) is cls:
+            raise TypeError(f'Only {cls.__name__} supported but got {type(other)}')
+
     def __add__(self, other):
-        # todo check other type
+        self.__check_other(other)
         return CellStorage(self.count + other.count)
 
     def __sub__(self, other):
-        # todo check other type
-        if self.count - other.count <= 0:
-            raise ValueError('Difference between cells counters should be more than zero', self.count, other.count)
+        self.__check_other(other)
         return CellStorage(self.count - other.count)
 
     def __mul__(self, other):
-        # todo check other type
+        self.__check_other(other)
         return CellStorage(self.count * other.count)
 
     def __truediv__(self, other):
-        # todo check other type
+        self.__check_other(other)
         # todo check zero
         return CellStorage(self.count//other.count)
 
