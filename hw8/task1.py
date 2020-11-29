@@ -14,6 +14,8 @@ class Date:
             dt = Date.convert(str_date)
             if Date.is_valid(dt):
                 self.__data = dt
+            else:
+                raise ValueError('Not valid date', str_date)
 
     @staticmethod
     def is_valid(data: dict):
@@ -21,7 +23,11 @@ class Date:
             return False
         if not data.keys() == Date.__data.keys():
             return False
-        if data['day'] < 1 or data['day'] > 31 or data['month'] < 1 or data['month'] > 12 or data['year'] < 0:
+        if data['month'] < 1 or data['month'] > 12 or data['year'] < 0:
+            return False
+        leap = 1 if data['year'] % 4 == 0 else 0
+        days = (31, 28 + leap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+        if data['day'] < 1 or data['day'] > days[data['month'] - 1]:
             return False
         return True
 
@@ -46,5 +52,9 @@ if __name__ == '__main__':
     print(Date.is_valid({'day': 13, 'month': 13}))
     print(Date.is_valid({'day': 13, 'month': 13, 'year': 2000}))
     print(Date.is_valid({'day': 32, 'month': 12, 'year': 2000}))
+    print(Date.is_valid({'day': 29, 'month': 2, 'year': 2021}))
+    print(Date.is_valid({'day': 29, 'month': 2, 'year': 2020}))
+    print(Date.is_valid({'day': 31, 'month': 8, 'year': 2020}))
 
     c = Date('1-1-0')
+    d = Date('32-11-2020')
