@@ -37,9 +37,9 @@ class WareHouse:
             if count < 1:
                 raise ValueError('Unsupported value for count')
 
-        if not set(kwargs.keys()).issubset(OfficeEquipment.approved_attrs):
+        if not set(kwargs.keys()).issubset(OfficeEquipment.approved_keys):
             raise KeyError(f'Unsupported filter request {list(kwargs.keys())}.'
-                           f' Should be part of {OfficeEquipment.approved_attrs}')
+                           f' Should be part of {OfficeEquipment.approved_keys}')
 
         res_list = []
         for el in self.__storage:
@@ -74,7 +74,7 @@ class OfficeEquipment(ABC):
     cost: int
     department = ''
 
-    approved_attrs = ('serial_number', 'model', 'manufacturer', 'department', 'device_type', 'cost')
+    approved_keys = ('serial_number', 'model', 'manufacturer', 'department', 'device_type', 'cost')
 
     def __init__(self, manufacturer, model, serial_number, cost=0):
         self.manufacturer = manufacturer
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     wh.put(p)
     wh.put(p2)
     wh.put(s1)
-    for x in [Scanner('Brother', 'Superscan', cost=1000 + i*10) for i in range(45)]:
+    for x in [Scanner('Brother', '', cost=1000 + i*10) for i in range(45)]:
         x.model = choice(('Superscan', 'Superscan2', 'ScanMe', 'ScanMaster'))
         x.department = choice(('HR', 'DEV', 'QA', 'Marketing'))
         wh.put(x)
