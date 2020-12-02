@@ -66,6 +66,18 @@ class WareHouse:
     def __len__(self):
         return len(self.__storage)
 
+    def get_report(self):
+        """
+        Create short report what storage contains
+        :return: string with dict
+        """
+        pres = {}
+        for el in self.__storage:
+            ce = pres.get(el.device_type) or 0
+            ce += 1
+            pres[el.device_type] = ce
+        return "WareHouse have {}".format(str(pres).strip('{}'))
+
 
 class OfficeEquipment(ABC):
     serial_number: int
@@ -157,6 +169,7 @@ if __name__ == '__main__':
         x.department = choice(('HR', 'DEV', 'QA', 'Marketing'))
         wh.put(x)
     print(len(wh))
+    print(wh.get_report())
     l1 = wh.get(device_type='Scanner', model='Superscan', department='DEV')
     print('l1', len(l1), l1)
     l2 = wh.get(device_type='Printer', cost=1200)
@@ -172,3 +185,4 @@ if __name__ == '__main__':
     else:
         print(len(l3), l3)
     print('wh', len(wh))
+
